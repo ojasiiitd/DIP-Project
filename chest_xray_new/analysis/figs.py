@@ -1,7 +1,13 @@
 import os
 import cv2
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Dense , Conv2D , MaxPooling2D , AveragePooling2D , Flatten , Dropout , BatchNormalization
+from keras.preprocessing.image import ImageDataGenerator , load_img , img_to_array
+from keras import backend
 
 def info(org):
     # highboost
@@ -29,14 +35,14 @@ def info(org):
     
     plt.clf()
     plt.subplot(231) , plt.title("Original Image") , plt.imshow(org , cmap="gray")
-    plt.subplot(232) , plt.title("Highboost Filtering (k=2)") , plt.imshow(hbf , cmap="gray")
-    plt.subplot(233) , plt.title("Adaptive Histogram Equalization") , plt.imshow(histEq , cmap="gray")
-    plt.subplot(234) , plt.title("Morphological Gradient") , plt.imshow(gradient , cmap="gray")
-    plt.subplot(235) , plt.title("Canny Edge Detection") , plt.imshow(edges , cmap="gray")
-    plt.subplot(236) , plt.title("Otsu's Thresholding") , plt.imshow(thresh , cmap="gray")
-#     plt.savefig("/home/ojas3/Desktop/xx.png")
+    plt.subplot(232) , plt.title("Highboost Filtering") , plt.imshow(hbf , cmap="gray")
+    plt.subplot(233) , plt.title("Adaptive Histogram Eq.") , plt.imshow(histEq , cmap="gray")
+    plt.subplot(234) , plt.title("Morph. Gradient") , plt.imshow(gradient , cmap="gray")
+    plt.subplot(235) , plt.title("Canny Edges") , plt.imshow(edges , cmap="gray")
+    plt.subplot(236) , plt.title("Otsu Thresholding") , plt.imshow(thresh , cmap="gray")
+    # plt.savefig('img.png', dpi=2*80)
     plt.show()
 
 if __name__ == '__main__':
-    img = cv2.imread("../train/NORMAL/NORMAL2-IM-0890-0001.jpeg" , 0)
+    img = cv2.imread("../train/PNEUMONIA/person1405_bacteria_3573.jpeg" , 0)
     info(img)
